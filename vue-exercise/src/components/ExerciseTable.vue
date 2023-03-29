@@ -5,14 +5,29 @@
                 <tr>
                     <th>Exercise</th>
                     <th>Muscules Worked</th>
-                    <th>Duration</th>
+                    <th>Duration(minutes)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="exercise in exercises" :key="exercise.id">
-                    <td>{{ exercise.description }}</td>
-                    <td>{{ exercise.muscules }}</td>
-                    <td>{{ exercise.duration }}</td>
+
+                    <td>
+                        <input type="text" v-model="exercise.description"/>
+                    </td>
+
+                    <td>
+                        <input type="text" v-model="exercise.muscules"/>
+                    </td>
+
+                    <td>
+                        <input type="text" v-model="exercise.duration"/>
+                    </td>
+
+                    <td>
+                        <button>Edit</button>
+                        <!-- <button @click = emit('past', exercise), $emit('delete', exercise.id)>Delete</button> -->
+                    </td>
+
                 </tr>
             </tbody>
         </table>
@@ -24,6 +39,16 @@
         name: 'exercise-table',
         props: {
             exercises: Array,
+        },
+        data() {
+            return {
+                editing: null
+            }
+    },
+    methods: {
+        handleEdit(id) {
+            this.editing = id
         }
     }
+}
 </script>

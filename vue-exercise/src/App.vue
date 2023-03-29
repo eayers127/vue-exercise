@@ -29,6 +29,31 @@ import ExerciseForm from './components/ExerciseForm.vue';
           }
         ]
       }
+    },
+    methods:{
+      addExercise(exercise) {
+        const lastId = this.exercises.length > 0 ? this.exercises[this.exercises.length -1].id: 0
+        const id = lastId +1
+
+        const newExercise = {
+          id,
+          ...exercise
+        }
+
+        this.exercises = [...this.exercises, newExercise]
+      },
+
+      deleteExercise(id) {
+        this.exercises = this.exercises.filter(
+          exercise => exercise.id !== id
+        )
+      },
+
+      editExercise(id, editedExercise) {
+        exercises = exercises.map(exercise => {
+          exercise.id === id ? editedExercise : exercise
+        })
+      }
     }
   }
 </script>
